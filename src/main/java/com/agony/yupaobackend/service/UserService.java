@@ -7,10 +7,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
-* @author 11971
-* @description 针对表【user(用户)】的数据库操作Service
-* @createDate 2023-12-15 10:19:05
-*/
+ * @author 11971
+ * @description 针对表【user(用户)】的数据库操作Service
+ * @createDate 2023-12-15 10:19:05
+ */
 public interface UserService extends IService<User> {
     long register(String userAccount, String userPassword, String checkPassword, String planetCode);
 

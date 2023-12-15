@@ -2,11 +2,11 @@ package com.agony.yupaobackend.service.impl;
 
 import com.agony.yupaobackend.common.ErrorCode;
 import com.agony.yupaobackend.exception.BusinessException;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.agony.yupaobackend.mapper.UserMapper;
 import com.agony.yupaobackend.pojo.User;
 import com.agony.yupaobackend.service.UserService;
-import com.agony.yupaobackend.mapper.UserMapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,13 +28,13 @@ import java.util.stream.Collectors;
 import static com.agony.yupaobackend.constant.UserConstant.USER_LOGIN_STATE;
 
 /**
-* @author 11971
-* @description 针对表【user(用户)】的数据库操作Service实现
-* @createDate 2023-12-15 10:19:05
-*/
+ * @author 11971
+ * @description 针对表【user(用户)】的数据库操作Service实现
+ * @createDate 2023-12-15 10:19:05
+ */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User>
-    implements UserService{
+        implements UserService {
 
     @Autowired
     private UserMapper userMapper;
@@ -167,8 +167,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      * @return 查询用户
      */
     @Override
-    public List<User> searchUsersByTags(List<String> tagNameList){
-        if (CollectionUtils.isEmpty(tagNameList)){
+    public List<User> searchUsersByTags(List<String> tagNameList) {
+        if (CollectionUtils.isEmpty(tagNameList)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         //1.先查询所有用户
@@ -178,11 +178,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         //2.判断内存中是否包含要求的标签
         return userList.stream().filter(user -> {
             String tagstr = user.getTags();
-            Set<String> tempTagNameSet = gson.fromJson(tagstr, new TypeToken<Set<String>>() {}.getType());
+            Set<String> tempTagNameSet = gson.fromJson(tagstr, new TypeToken<Set<String>>() {
+            }.getType());
             //java8  Optional 来判断空
             tempTagNameSet = Optional.ofNullable(tempTagNameSet).orElse(new HashSet<>());
-            for (String tagName : tagNameList){
-                if (!tempTagNameSet.contains(tagName)){
+            for (String tagName : tagNameList) {
+                if (!tempTagNameSet.contains(tagName)) {
                     return false;
                 }
             }
@@ -197,16 +198,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      * @return 查询用户
      */
     @Deprecated
-    private List<User> searchUsersByTagBySql(List<String> tagNameList){
+    private List<User> searchUsersByTagBySql(List<String> tagNameList) {
         // 非空校验
-        if (CollectionUtils.isEmpty(tagNameList)){
+        if (CollectionUtils.isEmpty(tagNameList)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
 
         // sql查询
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
         for (String tagName : tagNameList) {
-            userQueryWrapper.like("tags",tagName);
+            userQueryWrapper.like("tags", tagName);
         }
         List<User> users = userMapper.selectList(userQueryWrapper);
 

@@ -8,8 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * @Author Agony
  * @Create 2023/12/15 15:28
@@ -20,9 +18,10 @@ class UserServiceTest {
 
     @Autowired
     private UserService userService;
+
     @Test
-     void searchByTagsTest(){
-        List<String> tagNameList = Arrays.asList("python");
+    void searchByTagsTest() {
+        List<String> tagNameList = Arrays.asList("男");
         List<User> users = userService.searchUsersByTags(tagNameList);
         users.forEach(System.out::println);
     }

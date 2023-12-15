@@ -17,7 +17,9 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.DigestUtils;
 
 import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -158,8 +160,44 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         return 1;
     }
 
+    /**
+     * 通过内存查询标签
+     *
+     * @param tagNameList 标签列表
+     * @return 查询用户
+     */
     @Override
-    public List<User> searchUsersByTags(List<String> tagNameList) {
+    public List<User> searchUsersByTags(List<String> tagNameList){
+        if (CollectionUtils.isEmpty(tagNameList)){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        //1.先查询所有用户
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        List<User> userList = userMapper.selectList(queryWrapper);
+        Gson gson = new Gson();
+        //2.判断内存中是否包含要求的标签
+        return userList.stream().filter(user -> {
+            String tagstr = user.getTags();
+            Set<String> tempTagNameSet = gson.fromJson(tagstr, new TypeToken<Set<String>>() {}.getType());
+            //java8  Optional 来判断空
+            tempTagNameSet = Optional.ofNullable(tempTagNameSet).orElse(new HashSet<>());
+            for (String tagName : tagNameList){
+                if (!tempTagNameSet.contains(tagName)){
+                    return false;
+                }
+            }
+            return true;
+        }).map(this::getSafetyUser).collect(Collectors.toList());
+    }
+
+    /**
+     * 通过sql语句查询标签
+     *
+     * @param tagNameList 标签列表
+     * @return 查询用户
+     */
+    @Deprecated
+    private List<User> searchUsersByTagBySql(List<String> tagNameList){
         // 非空校验
         if (CollectionUtils.isEmpty(tagNameList)){
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -173,26 +211,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         List<User> users = userMapper.selectList(userQueryWrapper);
 
         return users.stream().map(this::getSafetyUser).collect(Collectors.toList());
-
-        // 内存查询
-        // QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
-        // List<User> users = userMapper.selectList(userQueryWrapper);
-        // Gson gson = new Gson();
-        // return users.stream().filter(user -> {
-        //     String tagsStr = user.getTags();
-        //     if (StringUtils.isEmpty(tagsStr)) {
-        //         return false;
-        //     }
-        //     Set<String> tempTagNameSet = gson.fromJson(tagsStr, new TypeToken<Set<String>>() {
-        //     }.getType());
-        //     for (String tagName : tagNameList) {
-        //         if (!tempTagNameSet.contains(tagName)) {
-        //             return false;
-        //         }
-        //     }
-        //     return true;
-        // }).map(this::getSafetyUser).collect(Collectors.toList());
-
     }
 }
 

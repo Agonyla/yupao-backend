@@ -22,7 +22,7 @@ class UserServiceTest {
     private UserService userService;
     @Test
      void searchByTagsTest(){
-        List<String> tagNameList = List.of("python");
+        List<String> tagNameList = Arrays.asList("python");
         List<User> users = userService.searchUsersByTags(tagNameList);
         users.forEach(System.out::println);
     }

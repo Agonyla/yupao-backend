@@ -1,0 +1,21 @@
+
+X
+java:S6813'"BRemove this field injection and use constructor injection instead.(êæÄÞ
+@
+java:S5869D"*Remove duplicates in this character class.(Œ¥†°
+K
+java:S6397D"5Replace this character class by the character itself.(Œ¥†°
+@
+java:S5869q"*Remove duplicates in this character class.(Œ¥†°
+K
+java:S6397q"5Replace this character class by the character itself.(Œ¥†°
+i
+java:S6204¿"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ðÁÜÖ
+f
+java:S6355È"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš8ëœõëÆ1
+S
+java:S1133É"5Do not forget to remove this deprecated code someday.(»²¢ƒ8ëœõëÆ1
+F
+java:S1123É"(Add the missing @deprecated Javadoc tag.(»²¢ƒ8ëœõëÆ1
+i
+java:S6204Ö"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(›è‘“

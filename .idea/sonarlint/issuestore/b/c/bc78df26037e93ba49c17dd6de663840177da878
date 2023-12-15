@@ -1,0 +1,12 @@
+
+V	java:S125("<This block of commented-out lines of code should be removed.(äÚ«Ãÿÿÿÿÿ
+Q	java:S1251"<This block of commented-out lines of code should be removed.(„§ñ£
+Q	java:S125;"<This block of commented-out lines of code should be removed.(„§ñ£
+Q	java:S125A"<This block of commented-out lines of code should be removed.(„§ñ£
+V	java:S125M"<This block of commented-out lines of code should be removed.(Şã¥œùÿÿÿÿ
+m
+java:S6204U"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¥ÎÏıÿÿÿÿ
+Q	java:S125l"<This block of commented-out lines of code should be removed.(„§ñ£
+Q	java:S125y"<This block of commented-out lines of code should be removed.(„§ñ£
+n
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ

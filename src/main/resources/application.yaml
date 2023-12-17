@@ -1,21 +1,37 @@
+server:
+  servlet:
+    context-path: /api
+  port: 8080
+
 spring:
   application:
     name: yupao-backend
 
   session:
+    redis:
+      repository-type: indexed
     timeout: 86400
-
+  
+  
+  data:
+    redis:
+      port: 6379
+      host: localhost
+      database: 1
+  
+  
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/yupao
     username: root
-    password: aaaaaaaa
+    password: 19991209
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
   profiles:
     active: dev
 
+# mybatis-plus配置
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: false
@@ -25,8 +41,5 @@ mybatis-plus:
       logic-delete-field: isDelete
       logic-delete-value: 1
       logic-not-delete-value: 0
-server:
-  servlet:
-    context-path: /api
-  port: 8080
+
 

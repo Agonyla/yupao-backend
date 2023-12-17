@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.agony.yupaobackend.constant.UserConstant.ADMIN_ROLE;
 import static com.agony.yupaobackend.constant.UserConstant.USER_LOGIN_STATE;
 
 /**
@@ -74,7 +73,7 @@ public class UserController {
     public BaseResponse<List<User>> search(String username, HttpServletRequest request) {
 
         // 仅管理员可查询
-        if (!isAdmin(request)) {
+        if (!userService.isAdmin(request)) {
             // return ResultUtils.success(new ArrayList<>());
             throw new BusinessException(ErrorCode.NO_AUTH);
         }
@@ -91,7 +90,7 @@ public class UserController {
     @PostMapping("/delete")
     public BaseResponse<Boolean> delete(long id, HttpServletRequest request) {
         // 仅管理员可查询
-        if (!isAdmin(request)) {
+        if (!userService.isAdmin(request)) {
             throw new BusinessException(ErrorCode.NO_AUTH);
         }
         if (id < 0) {
@@ -134,10 +133,18 @@ public class UserController {
         return ResultUtils.success(users);
     }
 
-
-    public boolean isAdmin(HttpServletRequest request) {
-        Object o = request.getSession().getAttribute(USER_LOGIN_STATE);
-        User user = (User) o;
-        return user != null && user.getUserRole() == ADMIN_ROLE;
+    @PostMapping("/update")
+    public BaseResponse<Integer> updateUser(@RequestBody User user, HttpServletRequest request) {
+        if (user == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User currentUser = userService.getCurrentUser(request);
+        if (currentUser == null) {
+            throw new BusinessException(ErrorCode.NOT_LOGIN);
+        }
+        int result = userService.updateUser(user, currentUser);
+        return ResultUtils.success(result);
     }
+
+
 }

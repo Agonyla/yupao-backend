@@ -17,14 +17,12 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.DigestUtils;
 
 import java.nio.charset.StandardCharsets;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static com.agony.yupaobackend.constant.UserConstant.ADMIN_ROLE;
 import static com.agony.yupaobackend.constant.UserConstant.USER_LOGIN_STATE;
 
 /**
@@ -191,6 +189,70 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             }
             return true;
         }).map(this::getSafetyUser).collect(Collectors.toList());
+    }
+
+    /**
+     * 修改用户信息
+     *
+     * @param user      前端传递的用户
+     * @param loginUser 当前登录的用户
+     * @return 返回更新的条数
+     */
+    @Override
+    public int updateUser(User user, User loginUser) {
+        Long id = user.getId();
+        if (id <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        // 管理员可以跟新任何用户信息
+        // 非管理员只能更新自己的信息
+        if (!isAdmin(loginUser) && !Objects.equals(user.getId(), loginUser.getId())) {
+            throw new BusinessException(ErrorCode.NO_AUTH);
+        }
+        return userMapper.updateById(user);
+    }
+
+    /**
+     * 获取当前用户
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public User getCurrentUser(HttpServletRequest request) {
+        if (request == null) {
+            return null;
+        }
+        Object o = request.getSession().getAttribute(USER_LOGIN_STATE);
+        if (o == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        return (User) o;
+
+    }
+
+    /**
+     * 是否为管理员
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public boolean isAdmin(HttpServletRequest request) {
+        Object o = request.getSession().getAttribute(USER_LOGIN_STATE);
+        User user = (User) o;
+        return user != null && user.getUserRole() == ADMIN_ROLE;
+    }
+
+    /**
+     * 是否为管理员
+     *
+     * @param user
+     * @return
+     */
+    @Override
+    public boolean isAdmin(User user) {
+        return user != null && user.getUserRole() == ADMIN_ROLE;
     }
 
     /**

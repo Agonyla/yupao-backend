@@ -1039,8 +1039,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="303" parent="1" name="yupao">
-      <IntrospectionTimestamp>2023-12-16.04:35:16</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-12-15.12:35:16</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2023-12-17.22:27:55</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-12-17.06:27:55</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="304" parent="1" name="mysql.infoschema">
@@ -1073,7 +1073,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Position>1</Position>
     </column>
     <column id="310" parent="308" name="id">
-      <AutoIncrement>4</AutoIncrement>
+      <AutoIncrement>5</AutoIncrement>
       <Comment>id</Comment>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
@@ -1153,12 +1153,17 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DasType>varchar(1024)|0s</DasType>
       <Position>15</Position>
     </column>
-    <index id="324" parent="308" name="PRIMARY">
+    <column id="324" parent="308" name="profile">
+      <Comment>个人简介</Comment>
+      <DasType>varchar(512)|0s</DasType>
+      <Position>16</Position>
+    </column>
+    <index id="325" parent="308" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="325" parent="308" name="PRIMARY">
+    <key id="326" parent="308" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

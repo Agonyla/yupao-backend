@@ -150,7 +150,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         safetyUser.setEmail(user.getEmail());
         safetyUser.setUserStatus(user.getUserStatus());
         safetyUser.setCreateTime(user.getCreateTime());
+        safetyUser.setPlanetCode(user.getPlanetCode());
         safetyUser.setTags(user.getTags());
+        safetyUser.setProfile(user.getProfile());
         return safetyUser;
     }
 

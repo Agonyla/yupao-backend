@@ -1,16 +1,17 @@
 package com.agony.yupaobackend.pojo;
 
 import com.baomidou.mybatisplus.annotation.*;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
 
 /**
  * 用户
+ *
  * @TableName user
  */
-@TableName(value ="user")
+@TableName(value = "user")
 @Data
 public class User implements Serializable {
     /**
@@ -65,7 +66,7 @@ public class User implements Serializable {
     private Date createTime;
 
     /**
-     * 
+     *
      */
     private Date updateTime;
 
@@ -89,6 +90,11 @@ public class User implements Serializable {
      * 标签列表
      */
     private String tags;
+
+    /**
+     * 个人简介
+     */
+    private String profile;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

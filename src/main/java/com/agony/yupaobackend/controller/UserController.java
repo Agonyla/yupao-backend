@@ -9,6 +9,7 @@ import com.agony.yupaobackend.pojo.domain.UserLoginRequest;
 import com.agony.yupaobackend.pojo.domain.UserRegisterRequest;
 import com.agony.yupaobackend.service.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
@@ -144,6 +145,19 @@ public class UserController {
         }
         int result = userService.updateUser(user, currentUser);
         return ResultUtils.success(result);
+    }
+
+    /**
+     * 主页推荐用户
+     *
+     * @param request
+     * @return
+     */
+    @GetMapping("/recommend")
+    public BaseResponse<Page<User>> recommend(long pageSize, long pageNumber, HttpServletRequest request) {
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        Page<User> userList = userService.page(new Page<>(pageNumber, pageSize), userQueryWrapper);
+        return ResultUtils.success(userList);
     }
 
 

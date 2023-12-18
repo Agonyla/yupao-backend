@@ -4,34 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0dda1aa7-da6a-4735-afed-68f85235d29d" name="Changes" comment="添加分布式session">
+    <list default="true" id="0dda1aa7-da6a-4735-afed-68f85235d29d" name="Changes" comment="添加用户修改信息接口并修改部分代码">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/config/MybatisPlusConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/agony/yupaobackend/service/InsertUsersTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/f55ccbb3-7908-4ffd-9afa-8c112189cc9a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f55ccbb3-7908-4ffd-9afa-8c112189cc9a.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f55ccbb3-7908-4ffd-9afa-8c112189cc9a/storage_v2/_src_/schema/yupao.AvzfBg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f55ccbb3-7908-4ffd-9afa-8c112189cc9a/storage_v2/_src_/schema/yupao.AvzfBg.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/agony/yupaobackend/YupaoBackendApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/agony/yupaobackend/common/BaseResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/agony/yupaobackend/common/ErrorCode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/agony/yupaobackend/common/ResultUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/agony/yupaobackend/config/SwaggerConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/agony/yupaobackend/constant/UserConstant.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/agony/yupaobackend/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/agony/yupaobackend/exception/BusinessException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/agony/yupaobackend/exception/GlobalExceptionHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/agony/yupaobackend/mapper/UserMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/agony/yupaobackend/pojo/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/agony/yupaobackend/pojo/domain/UserLoginRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/agony/yupaobackend/pojo/domain/UserRegisterRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/agony/yupaobackend/service/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/agony/yupaobackend/service/impl/UserServiceImpl$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/agony/yupaobackend/service/impl/UserServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/agony/yupaobackend/YupaoBackendApplicationTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/agony/yupaobackend/service/UserServiceTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +113,39 @@
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
-  <component name="RunManager" selected="Spring Boot.YupaoBackendApplication">
+  <component name="RunManager" selected="JUnit.InsertUsersTest.doConcurrencyInsertUser">
+    <configuration name="InsertUsersTest.doConcurrencyInsertUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="yupao-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.agony.yupaobackend.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.agony.yupaobackend.service" />
+      <option name="MAIN_CLASS_NAME" value="com.agony.yupaobackend.service.InsertUsersTest" />
+      <option name="METHOD_NAME" value="doConcurrencyInsertUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InsertUsersTest.doInsertUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="yupao-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.agony.yupaobackend.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.agony.yupaobackend.service" />
+      <option name="MAIN_CLASS_NAME" value="com.agony.yupaobackend.service.InsertUsersTest" />
+      <option name="METHOD_NAME" value="doInsertUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserServiceTest.searchByTagsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="yupao-backend" />
       <extension name="coverage">
@@ -158,6 +172,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.InsertUsersTest.doConcurrencyInsertUser" />
+        <item itemvalue="JUnit.InsertUsersTest.doInsertUser" />
         <item itemvalue="JUnit.UserServiceTest.searchByTagsTest" />
       </list>
     </recent_temporary>
@@ -230,6 +246,7 @@
     <MESSAGE value="controller添加按标签搜索" />
     <MESSAGE value="添加分布式session" />
     <MESSAGE value="标签使用内存查询" />
-    <option name="LAST_COMMIT_MESSAGE" value="标签使用内存查询" />
+    <MESSAGE value="添加用户修改信息接口并修改部分代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加用户修改信息接口并修改部分代码" />
   </component>
 </project>

@@ -1,8 +1,10 @@
 server:
+  port: 8080
   servlet:
     context-path: /api
-  port: 8080
-
+    session:
+      cookie:
+        domain: localhost
 spring:
   application:
     name: yupao-backend

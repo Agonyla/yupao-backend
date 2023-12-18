@@ -27,7 +27,7 @@ import static com.agony.yupaobackend.constant.UserConstant.USER_LOGIN_STATE;
  */
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(value = {"http://localhost:5173/"})
+@CrossOrigin(value = {"http://localhost:5173/"}, allowCredentials = "true")
 public class UserController {
 
     @Resource

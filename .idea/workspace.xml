@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0dda1aa7-da6a-4735-afed-68f85235d29d" name="Changes" comment="携带cookie">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/pojo/dto/TeamQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/pojo/enums/TeamStatusEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/pojo/request/TeamAddRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/common/PageRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/common/PageRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/controller/TeamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/controller/TeamController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/pojo/domain/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/pojo/domain/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/pojo/request/UserRegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/pojo/request/UserRegisterRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/TeamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/TeamService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/impl/TeamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/impl/TeamServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/agony/yupaobackend/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/agony/yupaobackend/service/UserServiceTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="0dda1aa7-da6a-4735-afed-68f85235d29d" name="Changes" comment="TeamController&#10;增删改查" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -297,7 +283,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702954805148</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="TeamController&#10;增删改查">
+      <option name="closed" value="true" />
+      <created>1702993881481</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1702993881481</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,6 +307,7 @@
     <MESSAGE value="添加主页推荐用户&#10;添加批量插入用户" />
     <MESSAGE value="主页推荐Redis缓存&#10;Redis测试&#10;Redisson&#10;定时任务" />
     <MESSAGE value="携带cookie" />
-    <option name="LAST_COMMIT_MESSAGE" value="携带cookie" />
+    <MESSAGE value="TeamController&#10;增删改查" />
+    <option name="LAST_COMMIT_MESSAGE" value="TeamController&#10;增删改查" />
   </component>
 </project>

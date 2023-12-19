@@ -1,5 +1,7 @@
 package com.agony.yupaobackend.common;
 
+import lombok.Data;
+
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @Create 2023/12/19 14:20
  * @Version 1.0
  */
+@Data
 public class PageRequest implements Serializable {
     @Serial
     private static final long serialVersionUID = 679074698898469424L;

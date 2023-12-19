@@ -1,6 +1,7 @@
 package com.agony.yupaobackend.service;
 
 import com.agony.yupaobackend.pojo.domain.Team;
+import com.agony.yupaobackend.pojo.domain.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -10,4 +11,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface TeamService extends IService<Team> {
 
+    /**
+     * 创建队伍
+     *
+     * @param team
+     * @param loginUser
+     * @return
+     */
+    long addTeam(Team team, User loginUser);
 }

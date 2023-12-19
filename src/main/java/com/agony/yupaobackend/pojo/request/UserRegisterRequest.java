@@ -15,8 +15,8 @@ import java.io.Serializable;
 public class UserRegisterRequest implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 3191241716373120793L;
-
+    private static final long serialVersionUID = 2404168217269088633L;
+    
     private String userAccount;
     private String userPassword;
     private String checkPassword;

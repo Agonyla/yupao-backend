@@ -1,8 +1,8 @@
-package com.agony.yupaobackend.pojo.domain;
+package com.agony.yupaobackend.pojo.request;
 
-import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,15 +11,11 @@ import java.util.Date;
  *
  * @TableName team
  */
-@TableName(value = "team")
-@Data
-public class Team implements Serializable {
-    /**
-     * id
-     */
-    @TableId(type = IdType.AUTO)
-    private Long id;
 
+@Data
+public class TeamAddRequest implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 6173474151111439674L;
     /**
      * 队伍名称
      */
@@ -55,22 +51,4 @@ public class Team implements Serializable {
      */
     private String password;
 
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     *
-     */
-    private Date updateTime;
-
-    /**
-     * 是否删除
-     */
-    @TableLogic
-    private Integer isDelete;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

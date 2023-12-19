@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,5 +25,11 @@ class UserServiceTest {
         List<String> tagNameList = Arrays.asList("男");
         List<User> users = userService.searchUsersByTags(tagNameList);
         users.forEach(System.out::println);
+    }
+
+    @Test
+    void dateTest() {
+        Date date = new Date();
+        System.out.println(date);
     }
 }

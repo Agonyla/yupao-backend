@@ -225,7 +225,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         }
         Object o = request.getSession().getAttribute(USER_LOGIN_STATE);
         if (o == null) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "未登录");
         }
         return (User) o;
 

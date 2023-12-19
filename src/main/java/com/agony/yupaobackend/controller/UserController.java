@@ -12,11 +12,16 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import static com.agony.yupaobackend.constant.UserConstant.USER_LOGIN_STATE;
@@ -29,10 +34,14 @@ import static com.agony.yupaobackend.constant.UserConstant.USER_LOGIN_STATE;
 @RestController
 @RequestMapping("/user")
 @CrossOrigin(value = {"http://localhost:5173/"}, allowCredentials = "true")
+@Slf4j
 public class UserController {
 
     @Resource
     private UserService userService;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
 
     @PostMapping("/register")
@@ -150,14 +159,32 @@ public class UserController {
     /**
      * 主页推荐用户
      *
-     * @param request
-     * @return
+     * @param pageSize   每页查找8个
+     * @param pageNumber 位于第几页
+     * @param request    请求
+     * @return 用户
      */
     @GetMapping("/recommend")
-    public BaseResponse<Page<User>> recommend(long pageSize, long pageNumber, HttpServletRequest request) {
+    public BaseResponse<Page<User>> recommendUsers(long pageSize, long pageNumber, HttpServletRequest request) {
+
+        User loginUser = userService.getCurrentUser(request);
+        String redisKey = String.format("Agony:user.recommend:%s", loginUser.getId());
+        ValueOperations valueOperations = redisTemplate.opsForValue();
+        // 如果有缓存，直接读缓存
+        Page<User> userPage = (Page<User>) valueOperations.get(redisKey);
+        if (userPage != null) {
+            return ResultUtils.success(userPage);
+        }
+        // 无缓存，查数据库
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
-        Page<User> userList = userService.page(new Page<>(pageNumber, pageSize), userQueryWrapper);
-        return ResultUtils.success(userList);
+        userPage = userService.page(new Page<>(pageNumber, pageSize), userQueryWrapper);
+        // 写缓存，30过期
+        try {
+            valueOperations.set(redisKey, userPage, 30000, TimeUnit.MILLISECONDS);
+        } catch (Exception e) {
+            log.error("redis set key error ", e);
+        }
+        return ResultUtils.success(userPage);
     }
 
 

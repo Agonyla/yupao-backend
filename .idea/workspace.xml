@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0dda1aa7-da6a-4735-afed-68f85235d29d" name="Changes" comment="添加主页推荐用户&#10;添加批量插入用户">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/config/RedisTemplateConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/config/RedissonConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/job/PreCacheJob.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/agony/yupaobackend/service/RedisTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/agony/yupaobackend/service/RedissonTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="0dda1aa7-da6a-4735-afed-68f85235d29d" name="Changes" comment="主页推荐Redis缓存&#10;Redis测试&#10;Redisson&#10;定时任务">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f55ccbb3-7908-4ffd-9afa-8c112189cc9a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f55ccbb3-7908-4ffd-9afa-8c112189cc9a.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f55ccbb3-7908-4ffd-9afa-8c112189cc9a/storage_v2/_src_/schema/yupao.AvzfBg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f55ccbb3-7908-4ffd-9afa-8c112189cc9a/storage_v2/_src_/schema/yupao.AvzfBg.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/agony/yupaobackend/service/InsertUsersTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/agony/yupaobackend/service/InsertUsersTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +108,7 @@
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
-  <component name="RunManager" selected="JUnit.RedissonTest.test">
+  <component name="RunManager" selected="JUnit.InsertUsersTest.doConcurrencyInsertUser">
     <configuration name="InsertUsersTest.doConcurrencyInsertUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="yupao-backend" />
       <extension name="coverage">
@@ -204,9 +199,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.InsertUsersTest.doConcurrencyInsertUser" />
         <item itemvalue="JUnit.RedissonTest.test" />
         <item itemvalue="JUnit.RedisTest.test" />
-        <item itemvalue="JUnit.InsertUsersTest.doConcurrencyInsertUser" />
         <item itemvalue="JUnit.InsertUsersTest.doInsertUser" />
         <item itemvalue="JUnit.UserServiceTest.searchByTagsTest" />
       </list>
@@ -227,7 +222,8 @@
       <workItem from="1702804366620" duration="90000" />
       <workItem from="1702816234770" duration="4688000" />
       <workItem from="1702865637764" duration="5218000" />
-      <workItem from="1702951159947" duration="3292000" />
+      <workItem from="1702951159947" duration="3904000" />
+      <workItem from="1702955150239" duration="1788000" />
     </task>
     <task id="LOCAL-00001" summary="完善按标签搜索">
       <option name="closed" value="true" />
@@ -277,7 +273,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702908889693</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="主页推荐Redis缓存&#10;Redis测试&#10;Redisson&#10;定时任务">
+      <option name="closed" value="true" />
+      <created>1702954805148</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1702954805148</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,6 +295,7 @@
     <MESSAGE value="标签使用内存查询" />
     <MESSAGE value="添加用户修改信息接口并修改部分代码" />
     <MESSAGE value="添加主页推荐用户&#10;添加批量插入用户" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加主页推荐用户&#10;添加批量插入用户" />
+    <MESSAGE value="主页推荐Redis缓存&#10;Redis测试&#10;Redisson&#10;定时任务" />
+    <option name="LAST_COMMIT_MESSAGE" value="主页推荐Redis缓存&#10;Redis测试&#10;Redisson&#10;定时任务" />
   </component>
 </project>

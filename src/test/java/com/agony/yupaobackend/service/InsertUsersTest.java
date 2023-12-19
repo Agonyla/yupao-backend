@@ -81,16 +81,16 @@ public class InsertUsersTest {
                 j++;
                 User user = new User();
                 user.setUsername("香蕉大魔王");
-                user.setUserAccount("Agony" + i);
+                user.setUserAccount("Agony" + (8 + j));
                 user.setAvatarUrl("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2F5478479d-f2de-418e-ac59-c1c7661d041f%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1705498902&t=e8091ca56eabc717c7f73be499a94184");
                 user.setProfile("一条咸鱼");
                 user.setGender(0);
                 user.setUserPassword("df7891ed89789db3f9038d6dee38d77c");
                 user.setPhone("123456789108");
-                user.setEmail("shayu-yusha@qq.com");
+                user.setEmail("Agony-la@qq.com");
                 user.setUserStatus(0);
                 user.setUserRole(0);
-                user.setPlanetCode("" + i);
+                user.setPlanetCode("" + (8 + j));
                 user.setTags("[]");
                 userList.add(user);
                 if (j % batchSize == 0) {

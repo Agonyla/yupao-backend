@@ -1039,8 +1039,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="303" parent="1" name="yupao">
-      <IntrospectionTimestamp>2023-12-17.22:27:55</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-12-17.06:27:55</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2023-12-19.20:09:17</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-12-19.04:09:17</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="304" parent="1" name="mysql.infoschema">
@@ -1073,7 +1073,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Position>1</Position>
     </column>
     <column id="310" parent="308" name="id">
-      <AutoIncrement>5</AutoIncrement>
+      <AutoIncrement>9</AutoIncrement>
       <Comment>id</Comment>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>

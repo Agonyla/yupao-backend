@@ -1,6 +1,6 @@
 package com.agony.yupaobackend.service;
 
-import com.agony.yupaobackend.pojo.User;
+import com.agony.yupaobackend.pojo.domain.User;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

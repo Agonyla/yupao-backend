@@ -1,4 +1,4 @@
-package com.agony.yupaobackend.pojo.domain;
+package com.agony.yupaobackend.pojo.request;
 
 import lombok.Data;
 

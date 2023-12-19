@@ -3,7 +3,7 @@ package com.agony.yupaobackend.service.impl;
 import com.agony.yupaobackend.common.ErrorCode;
 import com.agony.yupaobackend.exception.BusinessException;
 import com.agony.yupaobackend.mapper.UserMapper;
-import com.agony.yupaobackend.pojo.User;
+import com.agony.yupaobackend.pojo.domain.User;
 import com.agony.yupaobackend.service.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

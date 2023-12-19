@@ -1,6 +1,6 @@
 package com.agony.yupaobackend.job;
 
-import com.agony.yupaobackend.pojo.User;
+import com.agony.yupaobackend.pojo.domain.User;
 import com.agony.yupaobackend.service.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

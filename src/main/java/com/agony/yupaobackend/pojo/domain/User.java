@@ -1,4 +1,4 @@
-package com.agony.yupaobackend.pojo;
+package com.agony.yupaobackend.pojo.domain;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;

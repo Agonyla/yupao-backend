@@ -8,6 +8,7 @@ import com.agony.yupaobackend.pojo.domain.Team;
 import com.agony.yupaobackend.pojo.domain.User;
 import com.agony.yupaobackend.pojo.dto.TeamQuery;
 import com.agony.yupaobackend.pojo.request.TeamAddRequest;
+import com.agony.yupaobackend.pojo.vo.TeamUserVO;
 import com.agony.yupaobackend.service.TeamService;
 import com.agony.yupaobackend.service.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -113,23 +114,19 @@ public class TeamController {
     }
 
     /**
-     * 获取批量队伍
+     * 搜索队伍
      *
      * @param teamQuery
+     * @param request
      * @return
      */
     @GetMapping("/list")
-    public BaseResponse<List<Team>> getTeams(TeamQuery teamQuery) {
+    public BaseResponse<List<TeamUserVO>> getTeams(TeamQuery teamQuery, HttpServletRequest request) {
         if (teamQuery == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        Team team = new Team();
-        BeanUtils.copyProperties(teamQuery, team);
-        QueryWrapper<Team> queryWrapper = new QueryWrapper<>(team);
-        List<Team> teamList = teamService.list(queryWrapper);
-        if (teamList == null) {
-            throw new BusinessException(ErrorCode.NULL_ERROR, "队伍不存在");
-        }
+        boolean isAdmin = userService.isAdmin(request);
+        List<TeamUserVO> teamList = teamService.listTeams(teamQuery, isAdmin);
         return ResultUtils.success(teamList);
     }
 

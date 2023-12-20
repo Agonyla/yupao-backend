@@ -2,7 +2,11 @@ package com.agony.yupaobackend.service;
 
 import com.agony.yupaobackend.pojo.domain.Team;
 import com.agony.yupaobackend.pojo.domain.User;
+import com.agony.yupaobackend.pojo.dto.TeamQuery;
+import com.agony.yupaobackend.pojo.vo.TeamUserVO;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * @author 11971
@@ -19,4 +23,13 @@ public interface TeamService extends IService<Team> {
      * @return
      */
     long addTeam(Team team, User loginUser);
+
+    /**
+     * 搜索队伍
+     *
+     * @param teamQuery
+     * @param isAdmin
+     * @return
+     */
+    List<TeamUserVO> listTeams(TeamQuery teamQuery, boolean isAdmin);
 }

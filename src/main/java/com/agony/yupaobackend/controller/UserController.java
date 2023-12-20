@@ -135,12 +135,27 @@ public class UserController {
     }
 
     @GetMapping("/search/tags")
-    public BaseResponse<List<User>> searchUsersByTags(@RequestParam(required = false) List<String> tagNameList) {
+    public BaseResponse<List<User>> searchUsersByTags(@RequestParam(required = false) List<String> tagNameList, HttpServletRequest request) {
         if (CollectionUtils.isEmpty(tagNameList)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        List<User> users = userService.searchUsersByTags(tagNameList);
-        return ResultUtils.success(users);
+        User loginUser = userService.getCurrentUser(request);
+        String redisKey = String.format("Agony:user:tags:%s", loginUser.getId());
+        ValueOperations valueOperations = redisTemplate.opsForValue();
+        // 有缓存直接读
+        List<User> userList = (List<User>) valueOperations.get(redisKey);
+        if (userList != null) {
+            return ResultUtils.success(userList);
+        }
+        userList = userService.searchUsersByTags(tagNameList);
+        // 写缓存，30过期
+        //TODO: 不同标签搜索时间过段会有缓存
+        try {
+            valueOperations.set(redisKey, userList, 5000, TimeUnit.MILLISECONDS);
+        } catch (Exception e) {
+            log.error("redis set key error ", e);
+        }
+        return ResultUtils.success(userList);
     }
 
     @PostMapping("/update")
@@ -168,7 +183,7 @@ public class UserController {
     public BaseResponse<Page<User>> recommendUsers(long pageSize, long pageNumber, HttpServletRequest request) {
 
         User loginUser = userService.getCurrentUser(request);
-        String redisKey = String.format("Agony:user.recommend:%s", loginUser.getId());
+        String redisKey = String.format("Agony:user:recommend:%s", loginUser.getId());
         ValueOperations valueOperations = redisTemplate.opsForValue();
         // 如果有缓存，直接读缓存
         Page<User> userPage = (Page<User>) valueOperations.get(redisKey);

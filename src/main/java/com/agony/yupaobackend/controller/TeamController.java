@@ -9,6 +9,7 @@ import com.agony.yupaobackend.pojo.domain.User;
 import com.agony.yupaobackend.pojo.dto.TeamQuery;
 import com.agony.yupaobackend.pojo.request.TeamAddRequest;
 import com.agony.yupaobackend.pojo.request.TeamJoinRequest;
+import com.agony.yupaobackend.pojo.request.TeamQuitRequest;
 import com.agony.yupaobackend.pojo.request.TeamUpdateRequest;
 import com.agony.yupaobackend.pojo.vo.TeamUserVO;
 import com.agony.yupaobackend.service.TeamService;
@@ -173,4 +174,19 @@ public class TeamController {
         }
         return ResultUtils.success(true);
     }
+
+
+    @PostMapping("/quit")
+    public BaseResponse<Boolean> quitTeam(@RequestBody TeamQuitRequest teamQuitRequest, HttpServletRequest request) {
+        if (teamQuitRequest == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "退出退伍请求有误");
+        }
+        User loginUser = userService.getLoginUser(request);
+        boolean result = teamService.quitTeam(teamQuitRequest, loginUser);
+        if (!result) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "退出队伍失败");
+        }
+        return ResultUtils.success(true);
+    }
+
 }

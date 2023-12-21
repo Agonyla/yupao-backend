@@ -18,7 +18,7 @@ public interface UserService extends IService<User> {
 
     User getSafetyUser(User user);
 
-    int logout(HttpServletRequest request);
+    long logout(HttpServletRequest request);
 
     List<User> searchUsersByTags(List<String> tagNameList);
 
@@ -37,7 +37,7 @@ public interface UserService extends IService<User> {
      * @param request
      * @return
      */
-    User getCurrentUser(HttpServletRequest request);
+    User getLoginUser(HttpServletRequest request);
 
     /**
      * 是否为管理员

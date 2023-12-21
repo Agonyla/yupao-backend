@@ -3,6 +3,8 @@ package com.agony.yupaobackend.service;
 import com.agony.yupaobackend.pojo.domain.Team;
 import com.agony.yupaobackend.pojo.domain.User;
 import com.agony.yupaobackend.pojo.dto.TeamQuery;
+import com.agony.yupaobackend.pojo.request.TeamJoinRequest;
+import com.agony.yupaobackend.pojo.request.TeamUpdateRequest;
 import com.agony.yupaobackend.pojo.vo.TeamUserVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -32,4 +34,22 @@ public interface TeamService extends IService<Team> {
      * @return
      */
     List<TeamUserVO> listTeams(TeamQuery teamQuery, boolean isAdmin);
+
+    /**
+     * 更新队伍
+     *
+     * @param teamUpdateRequest
+     * @param loginUser
+     * @return
+     */
+    boolean updateTeam(TeamUpdateRequest teamUpdateRequest, User loginUser);
+
+    /**
+     * 加入队伍
+     *
+     * @param teamJoinRequest
+     * @param loginUser
+     * @return
+     */
+    boolean joinTeam(TeamJoinRequest teamJoinRequest, User loginUser);
 }

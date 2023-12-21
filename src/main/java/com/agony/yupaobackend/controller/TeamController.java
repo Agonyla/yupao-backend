@@ -8,6 +8,8 @@ import com.agony.yupaobackend.pojo.domain.Team;
 import com.agony.yupaobackend.pojo.domain.User;
 import com.agony.yupaobackend.pojo.dto.TeamQuery;
 import com.agony.yupaobackend.pojo.request.TeamAddRequest;
+import com.agony.yupaobackend.pojo.request.TeamJoinRequest;
+import com.agony.yupaobackend.pojo.request.TeamUpdateRequest;
 import com.agony.yupaobackend.pojo.vo.TeamUserVO;
 import com.agony.yupaobackend.service.TeamService;
 import com.agony.yupaobackend.service.UserService;
@@ -52,7 +54,7 @@ public class TeamController {
         if (teamAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User loginUser = userService.getCurrentUser(request);
+        User loginUser = userService.getLoginUser(request);
         Team team = new Team();
         BeanUtils.copyProperties(teamAddRequest, team);
         long teamId = teamService.addTeam(team, loginUser);
@@ -62,19 +64,21 @@ public class TeamController {
     /**
      * 更新队伍
      *
-     * @param team
+     * @param teamUpdateRequest
+     * @param request
      * @return
      */
     @PostMapping("/update")
-    public BaseResponse<Long> updateTeam(@RequestBody Team team) {
-        if (team == null) {
+    public BaseResponse<Boolean> updateTeam(@RequestBody TeamUpdateRequest teamUpdateRequest, HttpServletRequest request) {
+        if (teamUpdateRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        boolean result = teamService.updateById(team);
+        User loginUser = userService.getLoginUser(request);
+        boolean result = teamService.updateTeam(teamUpdateRequest, loginUser);
         if (!result) {
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "更新失败");
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "队伍更新失败");
         }
-        return ResultUtils.success(team.getId());
+        return ResultUtils.success(true);
     }
 
     /**
@@ -148,5 +152,25 @@ public class TeamController {
         QueryWrapper<Team> queryWrapper = new QueryWrapper<>(team);
         Page<Team> resultPage = teamService.page(page, queryWrapper);
         return ResultUtils.success(resultPage);
+    }
+
+    /**
+     * 加入队伍
+     *
+     * @param teamJoinRequest
+     * @param request
+     * @return
+     */
+    @PostMapping("/join")
+    public BaseResponse<Boolean> joinTeam(@RequestBody TeamJoinRequest teamJoinRequest, HttpServletRequest request) {
+        if (teamJoinRequest == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "加入队伍请求有误");
+        }
+        User loginUser = userService.getLoginUser(request);
+        boolean result = teamService.joinTeam(teamJoinRequest, loginUser);
+        if (!result) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "加入队伍失败");
+        }
+        return ResultUtils.success(true);
     }
 }

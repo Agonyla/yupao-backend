@@ -126,11 +126,11 @@ public class UserController {
 
 
     @PostMapping("/logout")
-    public BaseResponse<Integer> logout(HttpServletRequest request) {
+    public BaseResponse<Long> logout(HttpServletRequest request) {
         if (request == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        int result = userService.logout(request);
+        long result = userService.logout(request);
         return ResultUtils.success(result);
     }
 
@@ -139,7 +139,7 @@ public class UserController {
         if (CollectionUtils.isEmpty(tagNameList)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User loginUser = userService.getCurrentUser(request);
+        User loginUser = userService.getLoginUser(request);
         String redisKey = String.format("Agony:user:tags:%s", loginUser.getId());
         ValueOperations valueOperations = redisTemplate.opsForValue();
         // 有缓存直接读
@@ -163,7 +163,7 @@ public class UserController {
         if (user == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User currentUser = userService.getCurrentUser(request);
+        User currentUser = userService.getLoginUser(request);
         if (currentUser == null) {
             throw new BusinessException(ErrorCode.NOT_LOGIN);
         }
@@ -182,7 +182,7 @@ public class UserController {
     @GetMapping("/recommend")
     public BaseResponse<Page<User>> recommendUsers(long pageSize, long pageNumber, HttpServletRequest request) {
 
-        User loginUser = userService.getCurrentUser(request);
+        User loginUser = userService.getLoginUser(request);
         String redisKey = String.format("Agony:user:recommend:%s", loginUser.getId());
         ValueOperations valueOperations = redisTemplate.opsForValue();
         // 如果有缓存，直接读缓存

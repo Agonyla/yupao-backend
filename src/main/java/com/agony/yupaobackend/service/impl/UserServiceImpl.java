@@ -155,9 +155,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     }
 
     @Override
-    public int logout(HttpServletRequest request) {
+    public long logout(HttpServletRequest request) {
+        User loginUser = this.getLoginUser(request);
+        Long userId = loginUser.getId();
         request.getSession().removeAttribute(USER_LOGIN_STATE);
-        return 1;
+        return userId;
     }
 
     /**
@@ -219,7 +221,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      * @return
      */
     @Override
-    public User getCurrentUser(HttpServletRequest request) {
+    public User getLoginUser(HttpServletRequest request) {
         if (request == null) {
             return null;
         }

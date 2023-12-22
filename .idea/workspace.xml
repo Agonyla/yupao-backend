@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0dda1aa7-da6a-4735-afed-68f85235d29d" name="Changes" comment="修改队伍&#10;加入队伍">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/pojo/request/TeamQuitRequest.java" afterDir="false" />
+    <list default="true" id="0dda1aa7-da6a-4735-afed-68f85235d29d" name="Changes" comment="退出队伍">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/pojo/request/TeamDeleteRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/common/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/common/ErrorCode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/controller/TeamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/controller/TeamController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/TeamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/TeamService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/impl/TeamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/impl/TeamServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/agony/yupaobackend/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/agony/yupaobackend/service/UserServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +235,9 @@
       <workItem from="1702955150239" duration="1788000" />
       <workItem from="1703038974966" duration="4538000" />
       <workItem from="1703123926036" duration="6325000" />
-      <workItem from="1703161012576" duration="6435000" />
+      <workItem from="1703161012576" duration="6507000" />
+      <workItem from="1703168925330" duration="2747000" />
+      <workItem from="1703247067717" duration="1839000" />
     </task>
     <task id="LOCAL-00001" summary="完善按标签搜索">
       <option name="closed" value="true" />
@@ -325,7 +327,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703128462338</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="退出队伍">
+      <option name="closed" value="true" />
+      <created>1703168621705</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1703168621705</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -344,6 +354,7 @@
     <MESSAGE value="TeamController&#10;增删改查" />
     <MESSAGE value="查询队伍列表" />
     <MESSAGE value="修改队伍&#10;加入队伍" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改队伍&#10;加入队伍" />
+    <MESSAGE value="退出队伍" />
+    <option name="LAST_COMMIT_MESSAGE" value="退出队伍" />
   </component>
 </project>

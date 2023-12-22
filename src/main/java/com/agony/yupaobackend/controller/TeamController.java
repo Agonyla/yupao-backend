@@ -7,10 +7,7 @@ import com.agony.yupaobackend.exception.BusinessException;
 import com.agony.yupaobackend.pojo.domain.Team;
 import com.agony.yupaobackend.pojo.domain.User;
 import com.agony.yupaobackend.pojo.dto.TeamQuery;
-import com.agony.yupaobackend.pojo.request.TeamAddRequest;
-import com.agony.yupaobackend.pojo.request.TeamJoinRequest;
-import com.agony.yupaobackend.pojo.request.TeamQuitRequest;
-import com.agony.yupaobackend.pojo.request.TeamUpdateRequest;
+import com.agony.yupaobackend.pojo.request.*;
 import com.agony.yupaobackend.pojo.vo.TeamUserVO;
 import com.agony.yupaobackend.service.TeamService;
 import com.agony.yupaobackend.service.UserService;
@@ -85,17 +82,23 @@ public class TeamController {
     /**
      * 删除队伍
      *
-     * @param teamId
+     * @param teamDeleteRequest
+     * @param request
      * @return
      */
     @PostMapping("/delete")
-    public BaseResponse<Boolean> deleteTeam(@RequestBody long teamId) {
-        if (teamId <= 0) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+    public BaseResponse<Boolean> deleteTeam(@RequestBody TeamDeleteRequest teamDeleteRequest, HttpServletRequest request) {
+        if (teamDeleteRequest == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "删除队伍请求有误");
         }
-        boolean result = teamService.removeById(teamId);
+        Long teamId = teamDeleteRequest.getTeamId();
+        if (teamId == null || teamId <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "删除队伍id有误");
+        }
+        User loginUser = userService.getLoginUser(request);
+        boolean result = teamService.deleteTeam(teamId, loginUser);
         if (!result) {
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "更新失败");
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "队伍删除失败");
         }
         return ResultUtils.success(true);
     }
@@ -126,7 +129,7 @@ public class TeamController {
      * @return
      */
     @GetMapping("/list")
-    public BaseResponse<List<TeamUserVO>> getTeams(TeamQuery teamQuery, HttpServletRequest request) {
+    public BaseResponse<List<TeamUserVO>> listTeams(TeamQuery teamQuery, HttpServletRequest request) {
         if (teamQuery == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -143,7 +146,7 @@ public class TeamController {
      * @return
      */
     @GetMapping("/list/page")
-    public BaseResponse<Page<Team>> getPageTeams(TeamQuery teamQuery) {
+    public BaseResponse<Page<Team>> listPageTeams(TeamQuery teamQuery) {
         if (teamQuery == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -175,7 +178,13 @@ public class TeamController {
         return ResultUtils.success(true);
     }
 
-
+    /**
+     * 退出队伍
+     *
+     * @param teamQuitRequest
+     * @param request
+     * @return
+     */
     @PostMapping("/quit")
     public BaseResponse<Boolean> quitTeam(@RequestBody TeamQuitRequest teamQuitRequest, HttpServletRequest request) {
         if (teamQuitRequest == null) {

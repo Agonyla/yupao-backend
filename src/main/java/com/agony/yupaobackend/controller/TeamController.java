@@ -110,7 +110,7 @@ public class TeamController {
      * @return
      */
     @GetMapping("/get")
-    public BaseResponse<Team> getTeamById(@RequestBody long teamId) {
+    public BaseResponse<Team> getTeamById(long teamId) {
         if (teamId <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }

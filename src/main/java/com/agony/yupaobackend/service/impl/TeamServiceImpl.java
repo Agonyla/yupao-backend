@@ -96,7 +96,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
         }
         //   g. 校验用户最多创建 5 个队伍
         // TODO: 有 bug，可能同时创建 100 个队伍
-        Long userId = team.getUserId();
+        Long userId = loginUser.getId();
         QueryWrapper<Team> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("userId", userId);
         long count = this.count(queryWrapper);

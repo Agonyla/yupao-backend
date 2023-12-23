@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0dda1aa7-da6a-4735-afed-68f85235d29d" name="Changes" comment="删除队伍">
+    <list default="true" id="0dda1aa7-da6a-4735-afed-68f85235d29d" name="Changes" comment="修正队伍TeamService.addTeam相关错误&#10;修正队伍TeamController.getTeam相关错误">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/controller/TeamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/controller/TeamController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/impl/TeamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/impl/TeamServiceImpl.java" afterDir="false" />
@@ -236,7 +236,7 @@
       <workItem from="1703168925330" duration="2747000" />
       <workItem from="1703247067717" duration="3190000" />
       <workItem from="1703298465227" duration="4215000" />
-      <workItem from="1703317897120" duration="3906000" />
+      <workItem from="1703317897120" duration="10887000" />
     </task>
     <task id="LOCAL-00001" summary="完善按标签搜索">
       <option name="closed" value="true" />
@@ -342,7 +342,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703248989814</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="修正队伍TeamService.addTeam相关错误&#10;修正队伍TeamController.getTeam相关错误">
+      <option name="closed" value="true" />
+      <created>1703322490733</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1703322490733</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -363,6 +371,7 @@
     <MESSAGE value="修改队伍&#10;加入队伍" />
     <MESSAGE value="退出队伍" />
     <MESSAGE value="删除队伍" />
-    <option name="LAST_COMMIT_MESSAGE" value="删除队伍" />
+    <MESSAGE value="修正队伍TeamService.addTeam相关错误&#10;修正队伍TeamController.getTeam相关错误" />
+    <option name="LAST_COMMIT_MESSAGE" value="修正队伍TeamService.addTeam相关错误&#10;修正队伍TeamController.getTeam相关错误" />
   </component>
 </project>

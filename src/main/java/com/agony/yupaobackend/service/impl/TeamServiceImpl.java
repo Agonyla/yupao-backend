@@ -137,7 +137,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
         // id集合查询
         List<Long> idList = teamQuery.getIdList();
         if (CollectionUtils.isNotEmpty(idList)) {
-            queryWrapper.eq("id", idList);
+            queryWrapper.in("id", idList);
         }
         // 关键词查询 (同时对队伍名称和描述搜索)
         String searchText = teamQuery.getSearchText();

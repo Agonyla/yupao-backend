@@ -6,11 +6,13 @@ import com.agony.yupaobackend.common.ResultUtils;
 import com.agony.yupaobackend.exception.BusinessException;
 import com.agony.yupaobackend.pojo.domain.Team;
 import com.agony.yupaobackend.pojo.domain.User;
+import com.agony.yupaobackend.pojo.domain.UserTeam;
 import com.agony.yupaobackend.pojo.dto.TeamQuery;
 import com.agony.yupaobackend.pojo.request.*;
 import com.agony.yupaobackend.pojo.vo.TeamUserVO;
 import com.agony.yupaobackend.service.TeamService;
 import com.agony.yupaobackend.service.UserService;
+import com.agony.yupaobackend.service.UserTeamService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jakarta.annotation.Resource;
@@ -20,7 +22,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @Author Agony
@@ -39,6 +44,9 @@ public class TeamController {
 
     @Autowired
     private TeamService teamService;
+
+    @Autowired
+    private UserTeamService userTeamService;
 
     /**
      * 添加队伍
@@ -198,4 +206,54 @@ public class TeamController {
         return ResultUtils.success(true);
     }
 
+    /**
+     * 获取我创建的队伍
+     *
+     * @param teamQuery
+     * @param request
+     * @return
+     */
+    @GetMapping("/list/my/create")
+    public BaseResponse<List<TeamUserVO>> listMyCreateTeams(TeamQuery teamQuery, HttpServletRequest request) {
+        if (teamQuery == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User loginUser = userService.getLoginUser(request);
+        teamQuery.setUserId(loginUser.getId());
+        List<TeamUserVO> teamList = teamService.listTeams(teamQuery, true);
+        return ResultUtils.success(teamList);
+    }
+
+    /**
+     * 获取我加入的队伍
+     *
+     * @param teamQuery
+     * @param request
+     * @return
+     */
+    @GetMapping("/list/my/join")
+    public BaseResponse<List<TeamUserVO>> listMyJoinTeams(TeamQuery teamQuery, HttpServletRequest request) {
+        if (teamQuery == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User loginUser = userService.getLoginUser(request);
+        QueryWrapper<UserTeam> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("userId", loginUser.getId());
+        List<UserTeam> userTeamList = userTeamService.list(queryWrapper);
+        // 取出不重复的队伍 id
+        // teamId userId
+        // 1, 2
+        // 1, 3
+        // 2, 3
+        // result
+        // 1 => 2, 3
+        // 2 => 3
+        Map<Long, List<UserTeam>> listMap = userTeamList.stream()
+                .collect(Collectors.groupingBy(UserTeam::getTeamId));
+        List<Long> idList = new ArrayList<>(listMap.keySet());
+        teamQuery.setIdList(idList);
+        List<TeamUserVO> teamList = teamService.listTeams(teamQuery, true);
+        return ResultUtils.success(teamList);
+
+    }
 }

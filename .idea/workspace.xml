@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0dda1aa7-da6a-4735-afed-68f85235d29d" name="Changes" comment="我创建的队伍&#10;我加入的队伍">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/utils/AlgorithmUtils.java" afterDir="false" />
+    <list default="true" id="0dda1aa7-da6a-4735-afed-68f85235d29d" name="Changes" comment="匹配模式&#10;查询已加入队伍">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/controller/TeamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/controller/TeamController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/impl/TeamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/agony/yupaobackend/service/impl/TeamServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,7 +238,7 @@
       <workItem from="1703298465227" duration="4215000" />
       <workItem from="1703317897120" duration="10987000" />
       <workItem from="1703384842876" duration="5000" />
-      <workItem from="1703397409399" duration="6072000" />
+      <workItem from="1703397409399" duration="10234000" />
     </task>
     <task id="LOCAL-00001" summary="完善按标签搜索">
       <option name="closed" value="true" />
@@ -364,7 +360,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703337287146</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="匹配模式&#10;查询已加入队伍">
+      <option name="closed" value="true" />
+      <created>1703405774969</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1703405774969</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -387,6 +391,7 @@
     <MESSAGE value="删除队伍" />
     <MESSAGE value="修正队伍TeamService.addTeam相关错误&#10;修正队伍TeamController.getTeam相关错误" />
     <MESSAGE value="我创建的队伍&#10;我加入的队伍" />
-    <option name="LAST_COMMIT_MESSAGE" value="我创建的队伍&#10;我加入的队伍" />
+    <MESSAGE value="匹配模式&#10;查询已加入队伍" />
+    <option name="LAST_COMMIT_MESSAGE" value="匹配模式&#10;查询已加入队伍" />
   </component>
 </project>

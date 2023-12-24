@@ -20,12 +20,15 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author 11971
@@ -41,6 +44,9 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RedissonClient redissonClient;
 
     // 校验信息
     //   a. 队伍人数 > 1 且 <= 20
@@ -256,31 +262,48 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
         }
         // 该用户已加入的队伍数量 => 用户最多加入 5 个队伍
         Long userId = loginUser.getId();
-        QueryWrapper<UserTeam> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("userId", userId);
-        long count = userTeamService.count(queryWrapper);
-        if (count > 5) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR, "最多创建或加入五个队伍");
+        // 只有一个线程能获取到锁
+        RLock lock = redissonClient.getLock("Agony:join_team");
+        try {
+            // 抢到锁并执行
+            while (true) {
+                if (lock.tryLock(0, -1, TimeUnit.MILLISECONDS)) {
+                    QueryWrapper<UserTeam> queryWrapper = new QueryWrapper<>();
+                    queryWrapper.eq("userId", userId);
+                    long count = userTeamService.count(queryWrapper);
+                    if (count > 5) {
+                        throw new BusinessException(ErrorCode.PARAMS_ERROR, "最多创建或加入五个队伍");
+                    }
+                    // 不能加入自己的队伍，不能重复加入已加入的队伍（幂等性）
+                    queryWrapper = new QueryWrapper<>();
+                    queryWrapper.eq("userId", userId);
+                    queryWrapper.eq("teamId", teamId);
+                    count = userTeamService.count(queryWrapper);
+                    if (count > 0) {
+                        throw new BusinessException(ErrorCode.PARAMS_ERROR, "不能重复加入队伍");
+                    }
+                    // 已加入队伍数量
+                    long hasJoinedNum = this.countTeamUserByTeamId(teamId);
+                    if (hasJoinedNum >= team.getMaxNum()) {
+                        throw new BusinessException(ErrorCode.PARAMS_ERROR, "队伍人数已满");
+                    }
+                    // 新增队伍 - 用户关联信息
+                    UserTeam userTeam = new UserTeam();
+                    userTeam.setUserId(userId);
+                    userTeam.setTeamId(teamId);
+                    userTeam.setJoinTime(new Date());
+                    return userTeamService.save(userTeam);
+                }
+            }
+        } catch (InterruptedException e) {
+            log.error("doCacheRecommendUser error", e);
+            return false;
+        } finally {
+            // 只能自己释放自己的锁
+            if (lock.isHeldByCurrentThread()) {
+                lock.unlock();
+            }
         }
-        // 不能加入自己的队伍，不能重复加入已加入的队伍（幂等性）
-        queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("userId", userId);
-        queryWrapper.eq("teamId", teamId);
-        count = userTeamService.count(queryWrapper);
-        if (count > 0) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR, "不能重复加入队伍");
-        }
-        // 已加入队伍数量
-        long hasJoinedNum = this.countTeamUserByTeamId(teamId);
-        if (hasJoinedNum >= team.getMaxNum()) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR, "队伍人数已满");
-        }
-        // 新增队伍 - 用户关联信息
-        UserTeam userTeam = new UserTeam();
-        userTeam.setUserId(userId);
-        userTeam.setTeamId(teamId);
-        userTeam.setJoinTime(new Date());
-        return userTeamService.save(userTeam);
     }
 
     @Transactional(rollbackFor = Exception.class)
